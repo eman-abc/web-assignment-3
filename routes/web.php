@@ -5,11 +5,13 @@ use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\BlogController;
 use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\ServiceController;
+use App\Http\Middleware\CheckQueryParameter;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/',[HomeController::class,'home']);
+Route::get('/', [HomeController::class, 'home']);
 Route::get('/yoga', function () {
     return view('frontend.yoga');
 })->name('yoga');
@@ -22,9 +24,14 @@ Route::get('/sports-training', function () {
 Route::get('/blog', function () {
     return view('frontend.blog');
 })->name('blog');
+
+// Route to display the contact form
 Route::get('/contact', function () {
     return view('frontend.contact');
 })->name('contact');
+
+// Route to handle the form submission
+Route::post('/contact-submit', [ContactController::class, 'handleSubmit'])->name('contact.submit');
 
 Route::get('/mentalhealth', function () {
     return view('frontend.mentalhealth');
@@ -51,17 +58,27 @@ Route::get('/topnutrition', function () {
 })->name('topnutrition');
 
 
+//services
 
+Route::middleware([CheckQueryParameter::class])->group(function () {
+    // Bootcamp: Routes for adding/removing/updating services
+    Route::get('/bootcamp/create', [ServiceController::class, 'createBootcamp'])->name('bootcamp.create');
+    Route::post('/bootcamp/store', [ServiceController::class, 'storeBootcamp'])->name('bootcamp.store');
+    Route::get('/bootcamp/edit/{id}', [ServiceController::class, 'editBootcamp'])->name('bootcamp.edit');
+    Route::put('/bootcamp/update/{id}', [ServiceController::class, 'updateBootcamp'])->name('bootcamp.update');
+    Route::delete('/bootcamp/destroy/{id}', [ServiceController::class, 'destroyBootcamp'])->name('bootcamp.destroy');
 
-// Route::middleware(['auth'])->group(function () {
-//     Route::resource('services', ServiceController::class);
-// });
-
-
-
-Route::prefix('services')->group(function () {
-    Route::get('/yoga', [ServiceController::class, 'yoga'])->name('services.yoga');
-    Route::get('/sports-training', [ServiceController::class, 'sportsTraining'])->name('services.sportsTraining');
-    Route::get('/bootcamp', [ServiceController::class, 'bootcamp'])->name('services.bootcamp');
+    // Sports-Training: Routes for adding/removing/updating services
+    Route::get('/sports-training/create', [ServiceController::class, 'createSportsTraining'])->name('sportsTraining.create');
+    Route::post('/sports-training/store', [ServiceController::class, 'storeSportsTraining'])->name('sportsTraining.store');
+    Route::get('/sports-training/edit/{id}', [ServiceController::class, 'editSportsTraining'])->name('sportsTraining.edit');
+    Route::put('/sports-training/update/{id}', [ServiceController::class, 'updateSportsTraining'])->name('sportsTraining.update');
+    Route::delete('/sports-training/destroy/{id}', [ServiceController::class, 'destroySportsTraining'])->name('sportsTraining.destroy');
 });
 
+
+
+// Yoga: Display only (no CRUD operations for Yoga)
+Route::get('/yoga', [ServiceController::class, 'yoga'])->name('yoga');
+Route::get('/bootcamp', [ServiceController::class, 'bootcamp'])->name('bootcamp');
+Route::get('/sports-training', [ServiceController::class, 'sportsTraining'])->name('sports-training');
