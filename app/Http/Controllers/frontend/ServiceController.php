@@ -9,6 +9,35 @@ use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
+    
+
+    public function submitAccessKey(Request $request)
+    {
+        // Validate the input key
+        $request->validate([
+            'access_key' => 'required|string',
+        ]);
+
+        $accessKey = $request->input('access_key');
+
+        // Check if the key is valid
+        if ($accessKey !== '123') {
+            return response()->json(['error' => 'Invalid key'], 403);
+        }
+
+        // Store the key in the session
+        $request->session()->put('access_key', $accessKey);
+
+        return response()->json(['success' => true, 'message' => 'Access granted']);
+    }
+
+    
+    public function modifyServices()
+{
+    return view('frontend.modifyservices'); // Adjust the path if needed
+}
+
+    
     /**
      * Display Bootcamp services.
      */
@@ -109,7 +138,14 @@ class ServiceController extends Controller
     
         // Store the image if present
         if ($request->hasFile('image')) {
-            $validatedData['image'] = $request->file('image')->store('services', 'public');
+            $fileName = time() . '-' . $request->file('image')->getClientOriginalName();
+            $validatedData['image'] = $request->file('image')->move(
+                public_path('frontend/images/NewServices'),
+                $fileName
+            );
+    
+            // Save only the relative path in the database
+            $validatedData['image'] = 'frontend/images/NewServices/' . $fileName;
         }
     
         // Create the service with the validated data
@@ -118,6 +154,7 @@ class ServiceController extends Controller
         // Redirect dynamically based on the type selected
         return redirect()->route($validatedData['type'])->with('success', ucfirst($validatedData['type']) . ' service created successfully.');
     }
+    
     
     /**
      * Store a new Sports Training service.

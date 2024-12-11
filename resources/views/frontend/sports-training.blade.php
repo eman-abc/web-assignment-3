@@ -28,25 +28,8 @@
 
 
 <div class="sports-variants-section">
-    <div id="sportsSection">
-        <!-- Move the button and form outside the sports-container -->
-        <button id="toggleSportsFormButton">Add a New Service</button>
 
-        <form id="sportsForm" style="display: none;">
-            <label for="sportsName">Service Name:</label>
-            <input type="text" id="sportsName" placeholder="Enter service name" required>
-
-            <label for="sportsDescription">Service Description:</label>
-            <textarea id="sportsDescription" placeholder="Enter service description" required></textarea>
-
-            <label for="sportsImage">Upload Image:</label>
-            <input type="file" id="sportsImage" accept="image/*" required>
-
-            <button type="submit">Add Service</button>
-        </form>
-
-        <button id="removeSports">Remove Last Service</button>
-    </div>
+<a href="{{ route('modifyservices') }}" class="btn btn-primary">Modify Services</a>
 
     <!-- Sports container only holds the added services -->
     <div class="sports-container">
@@ -89,17 +72,16 @@
             </thead>
             <tbody>
                 @foreach ($sportsServices as $service)
-                <tr>
-                    <td>{{ $service->name }}</td>
-                    <td>{{ $service->description }}</td>
-                    <td>
-                        @if ($service->image)
-                        <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" style="width: 100px;">
-                        @else
-                        No Image
-                        @endif
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{ $service->name }}</td>
+                        <td>{{ $service->description }}</td>
+                        <td>
+                            @if ($service->image)
+                            <img src="{{ asset($service->image) }}" alt="{{ $service->name }}" style="width: 100px; height: auto;">                            @else
+                                No Image
+                            @endif
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
@@ -161,7 +143,7 @@
 
 @endsection
 @push('scripts')
-<script src="{{ asset('frontend/js/PricingDetails.js') }}"></script>
-<script src="{{ asset('frontend/js/AddSport.js') }}"></script>
-<!-- <script src="{{ asset('frontend/js/rollover.js') }}"></script> -->
+    <script src="{{ asset('frontend/js/PricingDetails.js') }}"></script>
+    <script src="{{ asset('frontend/js/AddSport.js') }}"></script>
+    <!-- <script src="{{ asset('frontend/js/rollover.js') }}"></script> -->
 @endpush

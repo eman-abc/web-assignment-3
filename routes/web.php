@@ -84,6 +84,13 @@ Route::middleware([CheckQueryParameter::class])->group(function () {
 
 Route::post('/create-service', [ServiceController::class, 'storeService'])->name('storeService');
 
+//button to redirect to modify services page
+Route::get('/modifyservices', [ServiceController::class, 'modifyServices'])->name('modifyservices');
+
+
+Route::post('/submit-access-key', [ServiceController::class, 'submitAccessKey'])->name('access.key.submit');
+
+
 
 // Yoga: Display only (no CRUD operations for Yoga)
 Route::get('/yoga', [ServiceController::class, 'yoga'])->name('yoga');

@@ -32,7 +32,9 @@
 
     <div id="bootcampSection">
 
-        <button id="toggleFormButton">Add a New Service</button>
+    <a href="{{ route('modifyservices') }}" class="btn btn-primary">Modify Services</a>
+
+        <!-- <button id="toggleFormButton">Add a New Service</button>
 
         <form id="exerciseForm" style="display: none;">
             <label for="exerciseName">Service Name:</label>
@@ -48,7 +50,7 @@
         </form>
 
         <button id="removeExercise">Remove Last Service</button>
-    </div>
+    </div> -->
 
 
     <!-- Container for Bootcamp Variants -->
@@ -95,17 +97,17 @@
             </thead>
             <tbody>
                 @foreach ($bootcampServices as $service)
-                <tr>
-                    <td>{{ $service->name }}</td>
-                    <td>{{ $service->description }}</td>
-                    <td>
-                        @if ($service->image)
-                        <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" style="width: 100px;">
-                        @else
-                        No Image
-                        @endif
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{ $service->name }}</td>
+                        <td>{{ $service->description }}</td>
+                        <td>
+                            @if ($service->image)
+                            <img src="{{ asset($service->image) }}" alt="{{ $service->name }}" style="width: 100px; height: auto;">
+                            @else
+                                No Image
+                            @endif
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
