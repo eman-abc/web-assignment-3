@@ -58,6 +58,10 @@ Route::get('/topnutrition', function () {
 })->name('topnutrition');
 
 
+Route::get('/modifyservices', function () {
+    return view("frontend.modifyservices");
+})->name('modifyservices');
+
 //services
 
 Route::middleware([CheckQueryParameter::class])->group(function () {

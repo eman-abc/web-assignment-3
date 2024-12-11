@@ -10,7 +10,7 @@ class CheckQueryParameter
 {
     public function handle(Request $request, Closure $next)
     {
-        if ($request->query('key') !== 'your-secret-key') {
+        if ($request->query('key') !== '123') {
             return response()->json(['error' => 'Invalid key'], 403);
         }
 
