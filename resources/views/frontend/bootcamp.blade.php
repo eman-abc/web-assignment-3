@@ -125,5 +125,3 @@
     <script src="{{ asset('frontend/js/AddBootcampExercise.js') }}"></script>
     <script src="{{ asset('frontend/js/rollover.js') }}"></script>
 @endpush
-
-
