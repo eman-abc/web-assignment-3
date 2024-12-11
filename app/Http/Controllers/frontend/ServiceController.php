@@ -109,7 +109,14 @@ class ServiceController extends Controller
     
         // Store the image if present
         if ($request->hasFile('image')) {
-            $validatedData['image'] = $request->file('image')->store('services', 'public');
+            $fileName = time() . '-' . $request->file('image')->getClientOriginalName();
+            $validatedData['image'] = $request->file('image')->move(
+                public_path('frontend/images/NewServices'),
+                $fileName
+            );
+    
+            // Save only the relative path in the database
+            $validatedData['image'] = 'frontend/images/NewServices/' . $fileName;
         }
     
         // Create the service with the validated data
@@ -118,6 +125,7 @@ class ServiceController extends Controller
         // Redirect dynamically based on the type selected
         return redirect()->route($validatedData['type'])->with('success', ucfirst($validatedData['type']) . ' service created successfully.');
     }
+    
     
     /**
      * Store a new Sports Training service.

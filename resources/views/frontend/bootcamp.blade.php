@@ -100,7 +100,7 @@
                         <td>{{ $service->description }}</td>
                         <td>
                             @if ($service->image)
-                                <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" style="width: 100px;">
+                            <img src="{{ asset($service->image) }}" alt="{{ $service->name }}" style="width: 100px; height: auto;">
                             @else
                                 No Image
                             @endif

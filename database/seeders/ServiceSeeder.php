@@ -44,7 +44,7 @@ class ServiceSeeder extends Seeder
                 'name' => 'Basketball Skill Development',
                 'description' => 'Focused training sessions to improve basketball skills.',
                 'type' => 'sports-training',
-                'image' => 'frontend/images/NewServices/sports2.jpg',
+                'image' => 'No image',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
