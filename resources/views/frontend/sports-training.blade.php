@@ -78,7 +78,7 @@
 
 
     <div class="table-container">
-    <span class="blink-text">Newly Added Sports</span>
+        <span class="blink-text">Newly Added Sports</span>
         <table>
             <thead>
                 <tr>
@@ -89,17 +89,17 @@
             </thead>
             <tbody>
                 @foreach ($sportsServices as $service)
-                    <tr>
-                        <td>{{ $service->name }}</td>
-                        <td>{{ $service->description }}</td>
-                        <td>
-                            @if ($service->image)
-                                <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" style="width: 100px;">
-                            @else
-                                No Image
-                            @endif
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ $service->name }}</td>
+                    <td>{{ $service->description }}</td>
+                    <td>
+                        @if ($service->image)
+                        <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" style="width: 100px;">
+                        @else
+                        No Image
+                        @endif
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -161,7 +161,7 @@
 
 @endsection
 @push('scripts')
-    <script src="{{ asset('frontend/js/PricingDetails.js') }}"></script>
-    <script src="{{ asset('frontend/js/AddSport.js') }}"></script>
-    <script src="{{ asset('frontend/js/rollover.js') }}"></script>
+<script src="{{ asset('frontend/js/PricingDetails.js') }}"></script>
+<script src="{{ asset('frontend/js/AddSport.js') }}"></script>
+<!-- <script src="{{ asset('frontend/js/rollover.js') }}"></script> -->
 @endpush

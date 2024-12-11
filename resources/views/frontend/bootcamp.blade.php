@@ -82,9 +82,9 @@
     </div>
 
 
-    
-<div class="table-container">
-<span class="blink-text">Newly Added Bootcamp Services</span>
+
+    <div class="table-container">
+        <span class="blink-text">Newly Added Bootcamp Services</span>
         <table>
             <thead>
                 <tr>
@@ -95,17 +95,17 @@
             </thead>
             <tbody>
                 @foreach ($bootcampServices as $service)
-                    <tr>
-                        <td>{{ $service->name }}</td>
-                        <td>{{ $service->description }}</td>
-                        <td>
-                            @if ($service->image)
-                                <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" style="width: 100px;">
-                            @else
-                                No Image
-                            @endif
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ $service->name }}</td>
+                    <td>{{ $service->description }}</td>
+                    <td>
+                        @if ($service->image)
+                        <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" style="width: 100px;">
+                        @else
+                        No Image
+                        @endif
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -113,7 +113,7 @@
 </div>
 
 
-    
+
 <!-- Pricing Section -->
 <div class="care-pricing-section">
     <div class="care-content">
@@ -157,7 +157,7 @@
 
 @endsection
 @push('scripts')
-    <script src="{{ asset('frontend/js/PricingDetails.js') }}"></script>
-    <script src="{{ asset('frontend/js/AddBootcampExercise.js') }}"></script>
-    <script src="{{ asset('frontend/js/rollover.js') }}"></script>
+<script src="{{ asset('frontend/js/PricingDetails.js') }}"></script>
+<script src="{{ asset('frontend/js/AddBootcampExercise.js') }}"></script>
+<!-- <script src="{{ asset('frontend/js/rollover.js') }}"></script> -->
 @endpush

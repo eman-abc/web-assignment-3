@@ -34,7 +34,7 @@
         </p>
     </div>
     <div class="trainer-image">
-        <img id = "trainerImage" src="{{asset('frontend/images/service images/yoga/RebaSmith.jpg')}}" alt="Trainer Reba Smith">
+        <img id="trainerImage" src="{{asset('frontend/images/service images/yoga/RebaSmith.jpg')}}" alt="Trainer Reba Smith">
     </div>
 </section>
 
@@ -84,6 +84,6 @@
 
 @endsection
 @push('scripts')
-    <script src="{{ asset('frontend/js/PricingDetails.js') }}"></script>
-    <script src="{{ asset('frontend/js/rollover.js') }}"></script>
+<script src="{{ asset('frontend/js/PricingDetails.js') }}"></script>
+<!-- <script src="{{ asset('frontend/js/rollover.js') }}"></script> -->
 @endpush

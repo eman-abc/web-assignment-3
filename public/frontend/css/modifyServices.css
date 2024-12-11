@@ -1,0 +1,171 @@
+/* ServiceCRUDTables.css */
+
+/* General container styling */
+/* General container styling */
+.container {
+    width: 30%;
+    /* Reduced width for a shorter container */
+    max-width: 400px;
+    /* Ensures a reasonable max width for larger screens */
+    margin: 50px auto;
+    /* Center the container with equal horizontal margins */
+    padding: 20px;
+    background-color: #f0f8ff;
+    /* Light blue background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form heading styling */
+h2 {
+    text-align: center;
+    /* Center the heading */
+    color: #005f73;
+    /* Dark bluish-green */
+    font-family: 'Georgia', serif;
+    /* Elegant and stylish font */
+    font-size: 2.5rem;
+    /* Large font size for prominence */
+    font-weight: 600;
+    /* Slightly bold for a clean look */
+    text-transform: capitalize;
+    /* Makes each word start with a capital letter */
+    margin-bottom: 30px;
+    /* More spacing below */
+    letter-spacing: 1.5px;
+    /* Spaced letters for elegance */
+    line-height: 1.4;
+    /* Slightly increased line height for readability */
+    position: relative;
+    /* Allows for additional pseudo-elements */
+}
+
+
+
+/* Input field styling */
+.form-control,
+select,
+textarea {
+    width: 90%;
+    /* Reduced width for text areas and inputs */
+    padding: 5px;
+    margin: 0px auto;
+    /* Centz the input elements */
+    border: 1px solid #88c0d0;
+    /* Soft bluish border */
+    border-radius: 5px;
+    background-color: #f5faff;
+    /* Very light blue */
+    font-size: 14px;
+    color: #002b36;
+    /* Dark text for contrast */
+}
+
+/* Modal styling remains unchanged */
+.modal-content {
+    width: 50%;
+    /* Ensure modal contents remain responsive */
+    max-width: 500px;
+    /* Set a reasonable max width for the modal */
+    background-color: #f0f8ff;
+    /* Light blue */
+    border-radius: 10px;
+    border: 1px solid #88c0d0;
+    /* Soft blue border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Input field hover/focus effects */
+.form-control:focus,
+select:focus,
+textarea:focus {
+    border-color: #005f73;
+    /* Stronger blue focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 95, 115, 0.5);
+}
+
+/* File upload input styling */
+input[type="file"] {
+    padding: 5px;
+    background-color: #e0f7fa;
+    /* Pale greenish-blue */
+}
+
+/* Button styling */
+button.btn {
+    padding: 10px 20px;
+    margin-top: 20px;
+    /* Add adequate padding for a balanced look */
+    font-size: 14px;
+    /* Set readable font size */
+    font-weight: bold;
+    /* Make the text bold */
+    text-transform: uppercase;
+    /* Convert text to uppercase for emphasis */
+    color: #ffffff;
+    /* White text for contrast */
+    background-color: #005f73;
+    /* Strong bluish-green background */
+    border: none;
+    /* Remove default border */
+    border-radius: 5px;
+    /* Slightly rounded corners */
+    cursor: pointer;
+    /* Change cursor to pointer for clickable buttons */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effects */
+}
+
+button.btn-primary {
+    background-color: #005f73;
+    /* Strong bluish-green */
+    color: #ffffff;
+}
+
+button.btn-primary:hover {
+    background-color: #88c0d0;
+    /* Softer blue on hover */
+}
+
+
+.modal-header {
+    background-color: #005f73;
+    /* Strong bluish-green */
+    color: #ffffff;
+    border-bottom: 1px solid #88c0d0;
+    /* Match the border color */
+}
+
+.modal-body {
+    background-color: #f5faff;
+    /* Very light blue */
+}
+
+.modal-footer button {
+    margin-left: 10px;
+}
+
+.modal-footer button.btn-primary {
+    background-color: #2a9d8f;
+    /* Greenish button */
+    color: #ffffff;
+}
+
+.modal-footer button.btn-primary:hover {
+    background-color: #88c0d0;
+    /* Softer blue hover */
+}
+
+/* Additional small tweaks */
+textarea {
+    resize: none;
+    /* Prevent resizing for cleaner look */
+}
+
+label {
+    font-weight: bold;
+    color: #005f73;
+    /* Dark bluish-green */
+}

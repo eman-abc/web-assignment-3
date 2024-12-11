@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="{{ asset('frontend/css/services.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/blogstyling.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/eachblog.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/modifyServices.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endpush
 
@@ -34,14 +35,14 @@
     <h2>Create a New Service</h2>
 
     <form action="{{ route('storeService') }}" method="POST" enctype="multipart/form-data">
-    @csrf
+        @csrf
 
         <div class="form-group">
             <label for="type">Service Type:</label>
             <select name="type" id="type" required>
-        <option value="bootcamp">Bootcamp</option>
-        <option value="sports-training">Sports Training</option>
-    </select>
+                <option value="bootcamp">Bootcamp</option>
+                <option value="sports-training">Sports Training</option>
+            </select>
         </div>
 
         <div class="form-group">
@@ -68,11 +69,11 @@
 @push('scripts')
 <script>
     // Show the modal when the page loads
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#keyModal').modal('show');
-        
+
         // Check if the correct key is entered
-        $('#submitKey').click(function () {
+        $('#submitKey').click(function() {
             var enteredKey = $('#accessKey').val();
             if (enteredKey === '123') {
                 $('#keyModal').modal('hide');
@@ -81,11 +82,11 @@
                 alert('Invalid key, please try again.');
             }
         });
-        
+
         // Handle the service type change
-        $('#service_type').change(function () {
+        $('#service_type').change(function() {
             var serviceType = $(this).val();
-            var actionUrl = serviceType === 'bootcamp' ? '{{ route('bootcamp.store') }}' : '{{ route('sportsTraining.store') }}';
+            var actionUrl = serviceType === 'bootcamp' ? '{{ route("bootcamp.store") }}' : '{{ route("sportsTraining.store") }}';
             $('#serviceForm').attr('action', actionUrl + '?key=123');
         });
     });
