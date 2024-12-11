@@ -32,7 +32,9 @@
 
     <div id="bootcampSection">
 
-        <button id="toggleFormButton">Add a New Service</button>
+    <a href="{{ route('modifyservices') }}" class="btn btn-primary">Modify Services</a>
+
+        <!-- <button id="toggleFormButton">Add a New Service</button>
 
         <form id="exerciseForm" style="display: none;">
             <label for="exerciseName">Service Name:</label>
@@ -48,7 +50,7 @@
         </form>
 
         <button id="removeExercise">Remove Last Service</button>
-    </div>
+    </div> -->
 
 
     <!-- Container for Bootcamp Variants -->

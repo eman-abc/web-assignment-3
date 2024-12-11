@@ -33,15 +33,14 @@
 
     <h2>Create a New Service</h2>
 
-    <form action="{{ route('storeService') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-
+    <form action="{{ route('storeService') }}" method="POST" enctype="multipart/form-data" id="serviceForm">
+        @csrf
         <div class="form-group">
             <label for="type">Service Type:</label>
             <select name="type" id="type" required>
-        <option value="bootcamp">Bootcamp</option>
-        <option value="sports-training">Sports Training</option>
-    </select>
+                <option value="bootcamp">Bootcamp</option>
+                <option value="sports-training">Sports Training</option>
+            </select>
         </div>
 
         <div class="form-group">
@@ -67,26 +66,33 @@
 
 @push('scripts')
 <script>
-    // Show the modal when the page loads
     $(document).ready(function () {
-        $('#keyModal').modal('show');
-        
-        // Check if the correct key is entered
+        // Show the modal when the page loads if `showModal` is true
+        @if(isset($showModal) && $showModal)
+            $('#keyModal').modal('show');
+        @endif
+
+        // Handle key submission
         $('#submitKey').click(function () {
             var enteredKey = $('#accessKey').val();
-            if (enteredKey === '123') {
-                $('#keyModal').modal('hide');
-                $('#serviceForm').show(); // Show the form after correct key
-            } else {
-                alert('Invalid key, please try again.');
-            }
-        });
-        
-        // Handle the service type change
-        $('#service_type').change(function () {
-            var serviceType = $(this).val();
-            var actionUrl = serviceType === 'bootcamp' ? '{{ route('bootcamp.store') }}' : '{{ route('sportsTraining.store') }}';
-            $('#serviceForm').attr('action', actionUrl + '?key=123');
+            $.ajax({
+                url: "{{ route('access.key.submit') }}",
+                method: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    access_key: enteredKey
+                },
+                success: function (response) {
+                    if (response.success) {
+                        $('#keyModal').modal('hide');
+                        alert('Access granted!');
+                        location.reload();
+                    }
+                },
+                error: function (response) {
+                    alert(response.responseJSON.error || 'Invalid key. Please try again.');
+                }
+            });
         });
     });
 </script>

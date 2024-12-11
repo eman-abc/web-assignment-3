@@ -9,6 +9,35 @@ use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
+    
+
+    public function submitAccessKey(Request $request)
+    {
+        // Validate the input key
+        $request->validate([
+            'access_key' => 'required|string',
+        ]);
+
+        $accessKey = $request->input('access_key');
+
+        // Check if the key is valid
+        if ($accessKey !== '123') {
+            return response()->json(['error' => 'Invalid key'], 403);
+        }
+
+        // Store the key in the session
+        $request->session()->put('access_key', $accessKey);
+
+        return response()->json(['success' => true, 'message' => 'Access granted']);
+    }
+
+    
+    public function modifyServices()
+{
+    return view('frontend.modifyservices'); // Adjust the path if needed
+}
+
+    
     /**
      * Display Bootcamp services.
      */

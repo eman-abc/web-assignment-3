@@ -29,6 +29,7 @@
 
 <div class="sports-variants-section">
 
+<a href="{{ route('modifyservices') }}" class="btn btn-primary">Modify Services</a>
 
     <!-- Sports container only holds the added services -->
     <div class="sports-container">
