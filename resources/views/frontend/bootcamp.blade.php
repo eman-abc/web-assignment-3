@@ -2,9 +2,13 @@
 
 @section('title', 'BootCamp - StriveX')
 @push('style')
+
+<link rel="stylesheet" href="{{ asset('frontend/css/ServiceCRUDTables.css') }}">
+
 <link rel="stylesheet" href="{{ asset('frontend/css/home.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/services.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/blogstyling.css') }}">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endpush
 
@@ -76,8 +80,40 @@
             <p>Build muscle and strength with resistance and weight-based training.</p>
         </div>
     </div>
+
+
+    
+<div class="table-container">
+<span class="blink-text">Newly Added Bootcamp Services</span>
+        <table>
+            <thead>
+                <tr>
+                    <th>Service Name</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($bootcampServices as $service)
+                    <tr>
+                        <td>{{ $service->name }}</td>
+                        <td>{{ $service->description }}</td>
+                        <td>
+                            @if ($service->image)
+                                <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" style="width: 100px;">
+                            @else
+                                No Image
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 
+
+    
 <!-- Pricing Section -->
 <div class="care-pricing-section">
     <div class="care-content">

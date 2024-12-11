@@ -26,27 +26,6 @@ class ServiceController extends Controller
         return view('frontend.bootcamp-create');
     }
 
-    /**
-     * Store a new Bootcamp service.
-     */
-    public function storeBootcamp(Request $request)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'nullable|image|max:2048',
-        ]);
-
-        $validatedData['type'] = 'bootcamp';
-
-        if ($request->hasFile('image')) {
-            $validatedData['image'] = $request->file('image')->store('services', 'public');
-        }
-
-        Service::create($validatedData);
-
-        return redirect()->route('bootcamp')->with('success', 'Bootcamp service created successfully.');
-    }
 
     /**
      * Show form to edit an existing Bootcamp service.
@@ -117,27 +96,33 @@ class ServiceController extends Controller
         return view('frontend.sports-training-create');
     }
 
-    /**
-     * Store a new Sports Training service.
-     */
-    public function storeSportsTraining(Request $request)
+
+    public function storeService(Request $request)
     {
+        // Validate the request data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'image' => 'nullable|image|max:2048',
+            'type' => 'required|string|in:bootcamp,sports-training', // Validate service type
         ]);
-
-        $validatedData['type'] = 'sports-training';
-
+    
+        // Store the image if present
         if ($request->hasFile('image')) {
             $validatedData['image'] = $request->file('image')->store('services', 'public');
         }
-
+    
+        // Create the service with the validated data
         Service::create($validatedData);
-
-        return redirect()->route('sportsTraining')->with('success', 'Sports Training service created successfully.');
+    
+        // Redirect dynamically based on the type selected
+        return redirect()->route($validatedData['type'])->with('success', ucfirst($validatedData['type']) . ' service created successfully.');
     }
+    
+    /**
+     * Store a new Sports Training service.
+     */
+
 
     /**
      * Show form to edit an existing Sports Training service.

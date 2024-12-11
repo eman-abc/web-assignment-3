@@ -82,6 +82,9 @@ Route::middleware([CheckQueryParameter::class])->group(function () {
 
 
 
+Route::post('/create-service', [ServiceController::class, 'storeService'])->name('storeService');
+
+
 // Yoga: Display only (no CRUD operations for Yoga)
 Route::get('/yoga', [ServiceController::class, 'yoga'])->name('yoga');
 Route::get('/bootcamp', [ServiceController::class, 'bootcamp'])->name('bootcamp');

@@ -2,6 +2,9 @@
 
 @section('title', 'Sports-training - StriveX')
 @push('style')
+
+<link rel="stylesheet" href="{{ asset('frontend/css/ServiceCRUDTables.css') }}">
+
 <link rel="stylesheet" href="{{ asset('frontend/css/home.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/services.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/blogstyling.css') }}">
@@ -72,6 +75,36 @@
             <p>Build teamwork and agility in our competitive volleyball training sessions.</p>
         </div>
     </div>
+
+
+    <div class="table-container">
+    <span class="blink-text">Newly Added Sports</span>
+        <table>
+            <thead>
+                <tr>
+                    <th>Service Name</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($sportsServices as $service)
+                    <tr>
+                        <td>{{ $service->name }}</td>
+                        <td>{{ $service->description }}</td>
+                        <td>
+                            @if ($service->image)
+                                <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" style="width: 100px;">
+                            @else
+                                No Image
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
 </div>
